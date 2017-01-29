@@ -1,30 +1,12 @@
-function! ExecuteAndCloseSimpleMenu(fun)
-  " close first so that the caller window has focus (and thus is context) when
-  " `fun` is called
-  call CloseSimpleMenu()
-
-  execute ":call " . a:fun . "()"
-endfunction
-
-function! CloseSimpleMenu()
-  execute "bd"
-endfunction
-
 function! SimpleMenu(options)
-  execute len(a:options.choices) . "split " . substitute(a:options.title, '\s', '_', 'g')
-
-  normal! gg"_dG
-  set buftype=nofile
-  set filetype=simplemenu
-  setlocal nonumber
-  setlocal nocursorline
-  setlocal colorcolumn=
-
-  let l:output = []
-
   let l:keys = split(g:simplemenu_keys, '\zs')
 
   let l:choice_map = {}
+
+  echohl Title
+  echo a:options.title
+  echohl None
+  echo ''
 
   let l:i = 0
   for choice in a:options.choices
@@ -34,25 +16,23 @@ function! SimpleMenu(options)
       let l:key = l:keys[l:i]
       let l:i += 1
     endif
+
     let l:choice_map[l:key] = choice[1]
-    let l:output = l:output + [l:key . ' ' . choice[0]]
+
+    echohl Boolean
+    echon l:key . ' '
+    echohl None
+    echon choice[0]
+    echo ''
   endfor
 
-  call append(0, l:output)
-  normal! ddgg
-
-  redraw!
-  echo a:options.title . ': '
   let l:response = nr2char(getchar())
 
   if has_key(l:choice_map, l:response)
-    call ExecuteAndCloseSimpleMenu(l:choice_map[l:response])
-  else
-    call CloseSimpleMenu()
+    execute ":call " . l:choice_map[l:response]. "()"
   endif
 
   redraw!
-  echo ''
 endfunction
 
 let g:simplemenu_keys = 'ajskdlf;gh'
