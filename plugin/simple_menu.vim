@@ -24,6 +24,8 @@ function! SimpleMenu(options)
 
   let l:keys = split(g:simplemenu_keys, '\zs')
 
+  let l:choice_map = {}
+
   let l:i = 0
   for choice in a:options.choices
     if len(choice) == 3
@@ -32,21 +34,25 @@ function! SimpleMenu(options)
       let l:key = l:keys[l:i]
       let l:i += 1
     endif
-    execute 'nnoremap <buffer> ' . l:key ' :call ExecuteAndCloseSimpleMenu("' . choice[1] . '")<CR>'
-    let l:output = l:output + [l:key . ' ' . choice[0] . ' ']
-  endfor
-
-  for key in g:simplemenu_quit_keys
-    execute 'nnoremap <buffer> ' . key . ' :call CloseSimpleMenu()<CR>'
+    let l:choice_map[l:key] = choice[1]
+    let l:output = l:output + [l:key . ' ' . choice[0]]
   endfor
 
   call append(0, l:output)
   normal! ddgg
 
-  " workaround for me not knowing how to hide the cursor
-  normal! $
-  setlocal list listchars=
+  redraw!
+  echo a:options.title . ': '
+  let l:response = nr2char(getchar())
+
+  if has_key(l:choice_map, l:response)
+    call ExecuteAndCloseSimpleMenu(l:choice_map[l:response])
+  else
+    call CloseSimpleMenu()
+  endif
+
+  redraw!
+  echo ''
 endfunction
 
 let g:simplemenu_keys = 'ajskdlf;gh'
-let g:simplemenu_quit_keys = ['q', '<ESC>', '<C-c>']
