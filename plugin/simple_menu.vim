@@ -1,22 +1,8 @@
 function! SimpleMenu(options)
-  let l:keys = split(g:simplemenu_keys, '\zs')
-
   let l:choice_map = {}
 
-  echohl Title
-  echo a:options.title
-  echohl None
-  echo ''
-
-  let l:i = 0
-  for choice in a:options.choices
-    if len(choice) == 3
-      let l:key = choice[2]
-    else
-      let l:key = l:keys[l:i]
-      let l:i += 1
-    endif
-
+  for choice in a:options
+    let l:key = choice[2]
     let l:choice_map[l:key] = choice[1]
 
     echohl Boolean
@@ -34,5 +20,3 @@ function! SimpleMenu(options)
 
   redraw!
 endfunction
-
-let g:simplemenu_keys = 'ajskdlf;gh'
