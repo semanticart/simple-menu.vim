@@ -1,4 +1,4 @@
-*simple_menu.txt* an easy way to make menus
+*simple-menu* an easy way to make menus
 
                                                                                ~
  ,---.  ,--.                 ,--.           ,--.   ,--.                        ~
@@ -50,7 +50,7 @@ MIT
 Section 3: Bugs                                     *SimpleMenuBugs*
 
 If you find a bug please post it on the issue tracker:
-https://github.com/semanticart/simple_menu.vim
+https://github.com/semanticart/simple-menu.vim
 
 
 ====================================================================
