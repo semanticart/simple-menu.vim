@@ -14,9 +14,9 @@ function! SimpleMenu(options)
 
   let l:response = nr2char(getchar())
 
+  redraw!
+
   if has_key(l:choice_map, l:response)
     call call(l:choice_map[l:response], [])
   endif
-
-  redraw!
 endfunction
