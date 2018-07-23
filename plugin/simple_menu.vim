@@ -45,8 +45,11 @@ function! SimpleMenu(options)
 
   for choice in a:options
     let l:key = choice[0]
-    let l:choice_map[l:key] = choice[2]
-
+	if len(choice) == 3
+		let l:choice_map[l:key] = choice[2]
+	else
+		let l:choice_map[l:key] = choice[1]
+	endif
     echohl Boolean
     echon ' ' . l:key . ' '
     echohl None
