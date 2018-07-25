@@ -92,26 +92,6 @@ Showing commands or function names instead of descriptions (ALE integration):
     noremap <leader>l :call MyAleMenu()<CR>
 >
 
-vim-lsp integration:
->
-    function! MyLspPopup()
-        call SimpleMenu([
-                \    ['d', 'Go to definition', ':LspDefinition'],
-                \    ['e', 'Errors', ':LspDocumentDiagnostics'],
-                \    ['f', 'Format', ':LspDocumentFormat'],
-                \    ['v', 'ranged format', ':LspDocumentRangeFormat'],
-                \    ['s', 'Symbols', ':LspDocumentSymbol'],
-                \    ['h', 'Hover', ':LspHover'],
-                \    ['i', 'Implementation', ':LspImplementation'],
-                \    ['r', 'References', ':LspReferences'],
-                \    ['m', 'renaMe', ':LspRename'],
-                \    ['w', 'Workspace symbols', ':LspWorkspaceSymbol'],
-                \ ])
-    endfunction
-
-    noremap <leader>l :call MyLspPopup()<CR>
->
-
 
 ====================================================================
 Section 3: License                               *SimpleMenuLicense*
