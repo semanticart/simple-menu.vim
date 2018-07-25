@@ -24,10 +24,10 @@ function! SimpleMenu(options)
 
   if has_key(l:choice_map, l:response)
     if l:choice_map[l:response][0] == ':'
-        " if it it stats from dash interpret it as vim command: `:foo`
+        " if it starts from colon interpret it as vim command: `:foo`
         execute l:choice_map[l:response]
     else
-        " otherwise it's a function name `:call foo()`
+        " otherwise it's a function name so do: `:call foo()`
         call call(l:choice_map[l:response], [])
     endif
   endif
