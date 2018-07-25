@@ -69,8 +69,8 @@ Using vim commands:
 >
     function! MyWindowMenu()
         call SimpleMenu([
-            \    ['k', 'close above', 'wincmd k | wincmd c'],
-            \    ['j', 'close below', 'wincmd j | wincmd c'],
+            \    ['k', 'close above', ':wincmd k | wincmd c'],
+            \    ['j', 'close below', ':wincmd j | wincmd c'],
         \ ])
     endfunction
 
@@ -81,31 +81,31 @@ Showing commands or function names instead of descriptions (ALE integration):
 >
     function! MyAleMenu()
         call SimpleMenu([
-            \    ['d', 'ALEDetail'],
-            \    ['h', 'ALEHover'],
-            \    ['n', 'ALENext'],
-            \    ['p', 'ALEPrevious'],
-            \    ['i', 'ALEInfo'],
+            \    ['d', ':ALEDetail'],
+            \    ['h', ':ALEHover'],
+            \    ['n', ':ALENext'],
+            \    ['p', ':ALEPrevious'],
+            \    ['i', ':ALEInfo'],
         \ ])
     endfunction
 
-    noremap <leader>a :call MyAleMenu()<CR>
+    noremap <leader>l :call MyAleMenu()<CR>
 >
 
 vim-lsp integration:
 >
     function! MyLspPopup()
         call SimpleMenu([
-                \    ['d', 'Go to definition', 'LspDefinition'],
-                \    ['e', 'Errors', 'LspDocumentDiagnostics'],
-                \    ['f', 'Format', 'LspDocumentFormat'],
-                \    ['v', 'ranged format', 'LspDocumentRangeFormat'],
-                \    ['s', 'Symbols', 'LspDocumentSymbol'],
-                \    ['h', 'Hover', 'LspHover'],
-                \    ['i', 'Implementation', 'LspImplementation'],
-                \    ['r', 'References', 'LspReferences'],
-                \    ['m', 'renaMe', 'LspRename'],
-                \    ['w', 'Workspace symbols', 'LspWorkspaceSymbol'],
+                \    ['d', 'Go to definition', ':LspDefinition'],
+                \    ['e', 'Errors', ':LspDocumentDiagnostics'],
+                \    ['f', 'Format', ':LspDocumentFormat'],
+                \    ['v', 'ranged format', ':LspDocumentRangeFormat'],
+                \    ['s', 'Symbols', ':LspDocumentSymbol'],
+                \    ['h', 'Hover', ':LspHover'],
+                \    ['i', 'Implementation', ':LspImplementation'],
+                \    ['r', 'References', ':LspReferences'],
+                \    ['m', 'renaMe', ':LspRename'],
+                \    ['w', 'Workspace symbols', ':LspWorkspaceSymbol'],
                 \ ])
     endfunction
 
