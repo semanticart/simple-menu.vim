@@ -23,9 +23,10 @@ function! SimpleMenu(options)
   redraw!
 
   if has_key(l:choice_map, l:response)
-    if l:choice_map[l:response][0] == ':'
-        " if it starts from colon interpret it as vim command: `:foo`
-        execute l:choice_map[l:response]
+    if (l:choice_map[l:response][0] == ':') ||
+            \ (l:choice_map[l:response][0:len('normal! ')-1] ==# 'normal! ' )
+        " if it starts from ':' or 'normal! ' interpret it as vim command: `:foo`
+        execute substitute(l:choice_map[l:response], "^%", '', '')
     else
         " otherwise it's a function name so do: `:call foo()`
         call call(l:choice_map[l:response], [])
